@@ -1,0 +1,244 @@
+---
+# Altere o nome da sua apresentação abaixo:
+title: "Coleta de dados automatizada e integração contínua utilizando GitHub Actions: "
+subtitle: "Exemplos com o Pacote Mananciais"
+# Adicione o nome das pessoas autoras:
+author: "Beatriz Milz"
+# Evite editar o trecho de código a seguir.
+institute: "International Seminar on Statistics with R"  
+date: 'Junho de 2021'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, custom.css]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+# O código abaixo irá gerar a apresentação em HTML e PDF.
+# Caso não queira a versão em PDF, comente a linha a seguir:
+# knit: pagedown::chrome_print
+---
+
+```{r setup, include=FALSE}
+# Não edite este chunk :)
+options(htmltools.dir.version = FALSE)
+library(magrittr, include.only = "%>%")
+```
+
+```{r xaringan-logo, echo=FALSE}
+# Não edite este chunk :)
+xaringanExtra::use_logo(
+  image_url = "img/logo.png", 
+  link_url = "http://ser.uff.br/"
+)
+```
+
+
+```{css echo=FALSE}
+a:hover {
+  opacity: 0.5;
+}
+
+```
+
+
+
+## Beatriz Milz
+
+
+- 2019 - * - Doutoranda em Ciência Ambiental - PROCAM/IEE/USP
+
+- 2016-2018 - Mestrado em Ciências - Programa de Pós-Graduação em Análise Ambiental Integrada - UNIFESP
+
+- 2012-2015 - Bacharelado em Gestão Ambiental - EACH/USP 
+
+
+### R: Comunidades, eventos, pacotes, livros..
+<center>
+
+<a href='https://education.rstudio.com/trainers/'>  <img src='img/Hex/CertifiedRstudioTrainer.png' width="90px"></a>
+
+
+<a href='https://rladies.org/'>  <img src='img/Hex/1hexlogorladies.jpeg' width="90px"></a>
+
+<a href='https://livro.curso-r.com/'>  <img src='https://curso-r.github.io/my-first-dashboard-with-shiny-csds2019/img/cursor.png' width="200px"></a>
+
+<a href='https://livro.curso-r.com/'>  <img src='https://curso-r.com/images/produtos/hex-livro.png' width="90px"></a>
+
+
+
+<a href='https://saopaulo2019.satrdays.org/'>  <img src='img/Hex/2satrdaysp.png' width="90px"></a>
+<a href='https://latin-r.com/'>  <img src='img/Hex/4LatinR_hex_violeta-cut.jpg' width="90px"></a>
+<a href='https://carpentries.org/'>  <img src='img/Hex/carpentries.png' width="90px"> </a>
+<a href='https://user2021.r-project.org/'>  <img src='https://user2021.r-project.org/img/artwork/user-logo-color.png' width="90px"> </a>
+
+<a href='https://cienciadedatos.github.io/dados/'>  <img src='https://cienciadedatos.github.io/dados/reference/figures/dados-hex.png' width="90px"></a>
+<a href='https://beatrizmilz.github.io/mananciais/'>  <img src='https://beatrizmilz.github.io/mananciais/reference/figures/hexlogo.png' width="90px"></a>
+</center>
+
+---
+
+## Objetivos
+
+.pull-left[
+
+- Introduzir o conceito de GitHub Actions:
+
+  - Para que serve?
+  
+  - Quais são os pré-requisitos para usar GHA?
+  
+  - Onde buscar mais informações sobre GHA
+  
+  
+- O pacote Mananciais servirá de exemplo!
+
+]
+--
+
+.pull-right[
+
+- O objetivo **não** é virar ninja em 20 minutos:
+
+```{r fig.align='center', out.width="90%",  echo=FALSE}
+knitr::include_graphics("https://media.giphy.com/media/Ro3QH9ZNTCvHW/source.gif")
+```
+
+
+
+
+]
+
+
+
+
+
+---
+
+## Pacote Mananciais
+
+- Disponibiliza dados do mananciais que abastecem a Região Metropolitana de São Paulo (RMSP)
+
+
+- Importância dos dados: 
+  - RMSP - mais de 21 milhões de habitantes [(fonte)](https://www.pdui.sp.gov.br/rmsp/?page_id=56#:~:text=Os%20n%C3%BAmeros%20da%20RMSP%20impressionam,%C3%A1rea%20de%207.946%2C96%20km%C2%B2.) + crise hídrica em 2014/2015
+  - O volume armazenado nos reservatórios é um dado muito usado por pessoas pesquisadoras e pela mídia.
+
+--
+
+- Dados são originalmente disponibilizados no Portal dos mananciais da Sabesp: https://mananciais.sabesp.com.br/ . Algumas dificuldades de acesso:
+    - Página "Situação dos mananciais" não apresenta opcão para fazer o download da base de dados
+    - Download é possível na página "Dados dos Sistemas Produtores", selecionando "valores agregados para o sistema"; 
+      - Mais dificuldades: só é possível fazer a consulta de um sistema por vez; ao fazer consulta de longos períodos o site trava; formato do arquivo baixado não é o ideal. 
+  - Os dados são atualizados todos os dias de manhã.
+
+---
+
+## Pacote Mananciais
+
+- Disponibiliza os dados atualizados diariamente da página "Situação dos mananciais":
+  - em [`.xlsx`](https://github.com/beatrizmilz/mananciais/blob/master/inst/extdata/mananciais.xlsx?raw=true) e em [`.csv`](https://github.com/beatrizmilz/mananciais/raw/master/inst/extdata/mananciais.csv) 
+  - com a função:
+  
+```{r cache=TRUE}
+mananciais <- mananciais::dados_mananciais() 
+dplyr::glimpse(mananciais)
+```
+
+
+
+https://beatrizmilz.github.io/mananciais/
+
+
+---
+
+## Como?
+
+
+
+
+---
+## Exemplo com GHA
+### Atualização da base de dados
+
+escrever :) 
+
+---
+## Exemplo com GHA
+### Checagem do pacote e execução de testes
+
+escrever :) 
+
+
+---
+## Exemplo com GHA
+### Avaliação da cobertura de testes
+
+escrever :) 
+
+
+---
+## Conclusão
+
+
+
+
+---
+
+## Referências/recomendações de consulta
+
+escrever :) 
+
+
+---
+
+## Agradecimentos
+
+escrever :) 
+
+---
+class: center, middle
+
+## Muito obrigada!
+
+.pull-left[
+Slides criados usando os pacotes em R:
+
+[**xaringan**](https://github.com/yihui/xaringan)<br>
+[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer)<br>
+[eventoseroficial/templates.SER](https://github.com/eventoseroficial/templates.SER)
+
+O chakra vem de [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), e [R Markdown](https://rmarkdown.rstudio.com).
+]
+
+.pull-right[
+
+```{r echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("https://beatrizmilz.com/img/bea.png")
+```
+
+
+
+<i class="fas fa-home"></i> [beatrizmilz.com](https://beatrizmilz.com)
+
+
+
+<i class="far fa-envelope"></i> [milz.bea@gmail.com](mailto:milz.bea@gmail.com)
+]
+
+
+
+
+
+
+<!-- inicio academic icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+<!-- final academic icons -->
+
+ 
+<!-- inicio font awesome -->
+<script src="https://kit.fontawesome.com/1f72d6921a.js" crossorigin="anonymous"></script>
+
+<!-- final font awesome -->
