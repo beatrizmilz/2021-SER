@@ -85,7 +85,7 @@ a:hover {
 
 &lt;a href='https://rladies.org/'&gt;  &lt;img src='img/Hex/1hexlogorladies.jpeg' width="90px"&gt;&lt;/a&gt;
 
-&lt;a href='https://livro.curso-r.com/'&gt;  &lt;img src='https://curso-r.github.io/my-first-dashboard-with-shiny-csds2019/img/cursor.png' width="200px"&gt;&lt;/a&gt;
+&lt;a href='https://curso-r.com/'&gt;  &lt;img src="img/Hex/curso-r-azul.jpg" width="90px"&gt;&lt;/a&gt;
 
 &lt;a href='https://livro.curso-r.com/'&gt;  &lt;img src='https://curso-r.com/images/produtos/hex-livro.png' width="90px"&gt;&lt;/a&gt;
 
@@ -110,9 +110,9 @@ a:hover {
 
   - Para que serve?
   
-  - Quais são os pré-requisitos para usar GHA?
+  - Quais são os pré-requisitos para usar?
   
-  - Onde buscar mais informações sobre GHA
+  - Onde buscar mais informações?
   
   
 - O pacote Mananciais servirá de exemplo!
@@ -143,7 +143,9 @@ a:hover {
 
 
 - Importância dos dados: 
+
   - RMSP - mais de 21 milhões de habitantes [(fonte)](https://www.pdui.sp.gov.br/rmsp/?page_id=56#:~:text=Os%20n%C3%BAmeros%20da%20RMSP%20impressionam,%C3%A1rea%20de%207.946%2C96%20km%C2%B2.) + crise hídrica em 2014/2015
+  
   - O volume armazenado nos reservatórios é um dado muito usado por pessoas pesquisadoras e pela mídia.
 
 --
@@ -188,10 +190,22 @@ https://beatrizmilz.github.io/mananciais/
 
 ---
 
-## Como?
+## Como isso é feito?
 
+- Dados da SABESP estão disponíveis em uma API, e é atualizado todos os dias de manhã.
 
+- O pacote mananciais apresenta uma função que atualiza a base de dados que está armazenada no pacote, buscando os dados atualizados na API: `mananciais:::atualizar_dados()`
 
+--
+
+&gt;  Como manter essa base atualizada diariamente?
+
+---
+## GitHub Actions
+
+&gt; GitHub Actions ajuda você a **automatizar tarefas** dentro de seu ciclo de vida de desenvolvimento de software. ([fonte](https://docs.github.com/pt/actions/learn-github-actions/introduction-to-github-actions))
+
+- escrever :) 
 
 ---
 ## Exemplo com GHA
@@ -223,7 +237,15 @@ escrever :)
 
 ## Referências/recomendações de consulta
 
-escrever :) 
+- [Documentação do GitHub Actions](https://docs.github.com/pt/actions/learn-github-actions/introduction-to-github-actions)
+
+- [Apresentação sobre pacotes em R](https://curso-r.github.io/main-pacotes/slides/index.html)
+
+## Dúvidas
+
+- Caso tenha dúvidas, envie neste fórum: https://discourse.curso-r.com/
+
+  - Antes de postar a dúvida, recomendo ler: [Dicas para escrever uma boa pergunta](https://discourse.curso-r.com/t/como-escrever-uma-boa-pergunta/542)
 
 
 ---
