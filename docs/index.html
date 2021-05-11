@@ -207,24 +207,97 @@ https://beatrizmilz.github.io/mananciais/
 
 - escrever :) 
 
+- Explicar eventos e trabalhos
+
 ---
 ## Exemplo com GHA
+
 ### Atualização da base de dados
 
-escrever :) 
+- Página no [Actions](https://github.com/beatrizmilz/mananciais/actions/workflows/2-update_data.yaml)
+
+
+- Como configurar?
+  - Adaptei um dos exemplos disponíveis no  [r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#example-workflows)
+
+
+- Evento: 
+  - Todos os dias, por volta de 9h15 da manhã
+  - Sempre que houver um novo push no repositório
+
+- Trabalho:
+  - [Esse código](https://github.com/beatrizmilz/mananciais/blob/master/data-raw/actions-update-data.R) será executado (ver próximo slide)
+
+---
+
+### Atualização da base de dados
+
+
+```r
+# Carregar o pipe
+library(magrittr, include.only = "%&gt;%")
+
+# buscar os dados
+mananciais &lt;- mananciais:::atualizar_dados()
+
+# adicionar os dados atualizados no pacote
+usethis::use_data(mananciais, overwrite = T)
+
+# salvar a versao csv
+readr::write_csv2(mananciais, "inst/extdata/mananciais.csv")
+# salvar a versao xlsx
+writexl::write_xlsx(mananciais, "inst/extdata/mananciais.xlsx")
+
+# gerar o readme
+rmarkdown::render("README.Rmd")
+
+# atualizar pagina inicial do pkgdown
+pkgdown::build_home()
+```
+
 
 ---
 ## Exemplo com GHA
 ### Checagem do pacote e execução de testes
 
-escrever :) 
+- Página no [Actions](https://github.com/beatrizmilz/mananciais/actions/workflows/1-R-CMD-check.yaml)
+
+
+- Como configurar? A função abaixo irá configurar utilizando o código disponível no  [r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#example-workflows).
+
+
+```r
+usethis::use_github_action("check-release")
+```
+
+
+- Evento: 
+  - Sempre que houver um novo push no repositório
+
+- Trabalho:
+  - Similar ao `devtools::check()`: vai verificar o pacote e também executar todos os testes.  
 
 
 ---
 ## Exemplo com GHA
 ### Avaliação da cobertura de testes
 
-escrever :) 
+- Página no [Actions](https://github.com/beatrizmilz/mananciais/actions/workflows/test-coverage.yaml)
+
+- Como configurar? A função abaixo irá configurar utilizando o código disponível no  [r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#example-workflows).
+
+
+```r
+usethis::use_github_action("test-coverage")
+```
+
+
+- Evento: 
+  - Sempre que houver um novo push no repositório
+
+- Trabalho:
+  - Executa `covr::codecov()` e faz a avaliação de cobertura de testes unitários.
+
 
 
 ---
@@ -239,6 +312,8 @@ escrever :)
 
 - [Documentação do GitHub Actions](https://docs.github.com/pt/actions/learn-github-actions/introduction-to-github-actions)
 
+- [Exemplos de workflows no repositório r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#example-workflows)
+
 - [Apresentação sobre pacotes em R](https://curso-r.github.io/main-pacotes/slides/index.html)
 
 ## Dúvidas
@@ -252,14 +327,20 @@ escrever :)
 
 ## Agradecimentos
 
-escrever :) 
+&lt;img src="img/logos_bia.png" width="1015" style="display: block; margin: auto;" /&gt;
+
+&lt;center&gt;&lt;a href='https://curso-r.com/'&gt;  &lt;img src="img/Hex/curso-r-azul.jpg" width="200px"&gt;&lt;/a&gt;&lt;/center&gt;
 
 ---
-class: center, middle
+class: center
 
 ## Muito obrigada!
 
 .pull-left[
+
+&lt;img src="https://media.giphy.com/media/M9NbzZjAcxq9jS9LZJ/giphy.gif" width="50%" style="display: block; margin: auto;" /&gt;
+
+
 Slides criados usando os pacotes em R:
 
 [**xaringan**](https://github.com/yihui/xaringan)&lt;br&gt;
@@ -269,21 +350,18 @@ Slides criados usando os pacotes em R:
 O chakra vem de [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), e [R Markdown](https://rmarkdown.rstudio.com).
 ]
 
+--
 .pull-right[
-
 &lt;img src="https://beatrizmilz.com/img/bea.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 
 
 &lt;i class="fas fa-home"&gt;&lt;/i&gt; [beatrizmilz.com](https://beatrizmilz.com)
 
-
+&lt;i class="fab fa-twitter"&gt;&lt;/i&gt; [@BeaMilz](https://twitter.com/BeaMilz)
 
 &lt;i class="far fa-envelope"&gt;&lt;/i&gt; [milz.bea@gmail.com](mailto:milz.bea@gmail.com)
 ]
-
-
-
 
 
 
