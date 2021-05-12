@@ -167,13 +167,39 @@ https://beatrizmilz.github.io/mananciais/
 >  Como manter essa base atualizada diariamente?
 
 ---
+class: middle
+
 ## GitHub Actions
 
-> GitHub Actions ajuda você a **automatizar tarefas** dentro de seu ciclo de vida de desenvolvimento de software. ([fonte](https://docs.github.com/pt/actions/learn-github-actions/introduction-to-github-actions))
+> ### ... nos ajuda a **automatizar tarefas**. ([fonte](https://docs.github.com/pt/actions/learn-github-actions/introduction-to-github-actions))
 
-- escrever :) 
+--
 
-- Explicar eventos e trabalhos
+#### É a coisa mais útil/interessante que eu aprendi nos últimos meses 🚀
+
+
+---
+## Conhecimentos prévios
+
+#### Git e GitHub <i class="fab fa-github"></i>
+
+--
+
+#### Pacotes em R 📦
+
+--
+
+#### Testes unitários <i class="fas fa-mitten"></i>
+(caso queira executar os testes, e fazer a avaliação da cobertura dos mesmos)
+
+---
+## GitHub Actions
+
+- Os arquivos .yaml que armazenam informações os fluxos de trabalho, onde estão descritos os eventos e trabalhos:
+
+  - Eventos: Um evento é uma atividade que aciona um fluxo de trabalho. 
+
+  - Trabalho: Um evento aciona o fluxo de trabalho (workflow), que contém um trabalho. 
 
 ---
 ## Exemplo com GHA
