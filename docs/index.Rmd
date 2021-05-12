@@ -249,8 +249,7 @@ Diagrama feito por Beatriz Milz utilizando o site [draw.io](https://draw.io)  e 
 - Confira o workflow no [Actions](https://github.com/beatrizmilz/mananciais/actions/workflows/2-update_data.yaml)
 
 
-- Como configurar?
-  - Adaptei um dos exemplos disponíveis no  [r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#example-workflows)
+- Como configurar? Adaptei um dos exemplos disponíveis no  [r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#example-workflows)
 
 
 - Evento: 
@@ -343,9 +342,11 @@ name: referencias
 ## Referências/recomendações de consulta
 
 .pull-left[
-- GitHub Actions
-  - [Documentação do GitHub Actions](https://docs.github.com/pt/actions/learn-github-actions/introduction-to-github-actions)
-  - [Exemplos de workflows no repositório r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#example-workflows)
+- Git e GitHub
+  - [Materiais da R-Ladies SP sobre a Hacktoberfest 2020](https://r-ladies-sao-paulo.github.io/2020-hacktoberfest/)
+  - [Apresentação sobre pacotes em R da Curso-R - slides sobre Git e GitHub](https://curso-r.github.io/main-pacotes/slides/index.html)
+  
+
 
 - Pacotes
   - [Apresentação sobre pacotes em R da Curso-R](https://curso-r.github.io/main-pacotes/slides/index.html)
@@ -357,13 +358,15 @@ name: referencias
 
 .pull-right[
 
+- GitHub Actions
+  - [Documentação do GitHub Actions](https://docs.github.com/pt/actions/learn-github-actions/introduction-to-github-actions)
+  - [Exemplos de workflows no repositório r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#example-workflows)
+
 - Testes unitários
   - [Pacote {testthat}](https://testthat.r-lib.org/)
   - [Pacote {covr}](https://covr.r-lib.org/)
   
-- Git e GitHub
-  - [Materiais da R-Ladies SP sobre a Hacktoberfest 2020](https://r-ladies-sao-paulo.github.io/2020-hacktoberfest/)
-  - [Apresentação sobre pacotes em R da Curso-R - slides sobre Git e GitHub](https://curso-r.github.io/main-pacotes/slides/index.html)
+
 
 ]
 
