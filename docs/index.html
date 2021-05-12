@@ -148,12 +148,20 @@ a:hover {
   
   - O volume armazenado nos reservatórios é um dado muito usado por pessoas pesquisadoras e pela mídia.
 
---
+---
+
+## Pacote Mananciais
+
 
 - Dados são originalmente disponibilizados no Portal dos mananciais da Sabesp: https://mananciais.sabesp.com.br/ . Algumas dificuldades de acesso:
-    - Página "Situação dos mananciais" não apresenta opcão para fazer o download da base de dados
-    - Download é possível na página "Dados dos Sistemas Produtores", selecionando "valores agregados para o sistema"; 
-      - Mais dificuldades: só é possível fazer a consulta de um sistema por vez; ao fazer consulta de longos períodos o site trava; formato do arquivo baixado não é o ideal. 
+
+  - Página "Situação dos mananciais" não apresenta opcão para fazer o download da base de dados
+    
+  - Download é possível na página "Dados dos Sistemas Produtores", selecionando "valores agregados para o sistema"; 
+    
+  - Mais dificuldades: só é possível fazer a consulta de um sistema por vez; ao fazer consulta de longos períodos o site trava; formato do arquivo baixado não é o ideal. 
+      
+    
   - Os dados são atualizados todos os dias de manhã.
 
 ---
@@ -217,30 +225,56 @@ class: middle
 
 #### Git e GitHub &lt;i class="fab fa-github"&gt;&lt;/i&gt;
 
---
+
 
 #### Pacotes em R 📦
 
---
 
-#### Testes unitários &lt;i class="fas fa-mitten"&gt;&lt;/i&gt;
-(caso queira executar os testes, e fazer a avaliação da cobertura dos mesmos)
+
+#### Testes unitários &lt;i class="fas fa-mitten"&gt;&lt;/i&gt; *
+.footnote[*(caso queira executar os testes, e fazer a avaliação da cobertura dos mesmos)]
+
+
+- [Nos slides finais](#referencias), tem referências de cada um destes assuntos! 📚
 
 ---
-## GitHub Actions
+## GitHub Actions - Eventos (events)
 
-- Os arquivos .yaml que armazenam informações os fluxos de trabalho, onde estão descritos os eventos e trabalhos:
+#### Eventos: Um evento é uma atividade que aciona um fluxo de trabalho. 
 
-  - Eventos: Um evento é uma atividade que aciona um fluxo de trabalho. 
+&lt;img src="img/explicacao_eventos.png" width="55%" style="display: block; margin: auto;" /&gt;
 
-  - Trabalho: Um evento aciona o fluxo de trabalho (workflow), que contém um trabalho. 
+Diagrama feito por Beatriz Milz utilizando o site [draw.io](https://draw.io).
+
+---
+## GitHub Actions - Trabalhos (jobs)
+
+#### Trabalho: O trabalho usa etapas para controlar a ordem em que as ações são executadas
+
+&lt;img src="img/explicacao_trabalho.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+Diagrama feito por Beatriz Milz utilizando o site [draw.io](https://draw.io).
+
+---
+
+## GitHub Actions - Fluxos de trabalho (workflows)
+
+&lt;!-- - Os arquivos .yaml que armazenam informações os fluxos de trabalho, onde estão descritos os eventos e trabalhos. --&gt;
+
+&lt;img src="img/explicacao_workflows.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+Diagrama feito por Beatriz Milz utilizando o site [draw.io](https://draw.io)  e [Carbon](https://carbon.now.sh/). Código de [r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#quickstart-ci-workflow).
+
+???
+
+ Os arquivos .yaml armazenam informações os fluxos de trabalho, onde estão descritos os eventos e trabalhos. 
 
 ---
 ## Exemplo com GHA
 
 ### Atualização da base de dados
 
-- Página no [Actions](https://github.com/beatrizmilz/mananciais/actions/workflows/2-update_data.yaml)
+- Confira o workflow no [Actions](https://github.com/beatrizmilz/mananciais/actions/workflows/2-update_data.yaml)
 
 
 - Como configurar?
@@ -248,45 +282,17 @@ class: middle
 
 
 - Evento: 
-  - Todos os dias, por volta de 9h15 da manhã
-  - Sempre que houver um novo push no repositório
+  - Todos os dias, por volta de 9h15 da manhã + Sempre que houver um novo push no repositório
 
 - Trabalho:
-  - [Esse código](https://github.com/beatrizmilz/mananciais/blob/master/data-raw/actions-update-data.R) será executado (ver próximo slide)
-
----
-
-### Atualização da base de dados
-
-
-```r
-# Carregar o pipe
-library(magrittr, include.only = "%&gt;%")
-
-# buscar os dados
-mananciais &lt;- mananciais:::atualizar_dados()
-
-# adicionar os dados atualizados no pacote
-usethis::use_data(mananciais, overwrite = T)
-
-# salvar a versao csv
-readr::write_csv2(mananciais, "inst/extdata/mananciais.csv")
-# salvar a versao xlsx
-writexl::write_xlsx(mananciais, "inst/extdata/mananciais.xlsx")
-
-# gerar o readme
-rmarkdown::render("README.Rmd")
-
-# atualizar pagina inicial do pkgdown
-pkgdown::build_home()
-```
+  - [Esse código](https://github.com/beatrizmilz/mananciais/blob/master/data-raw/actions-update-data.R) será executado: verifica se é necessário atualizar a base, e se for: atualiza a base, disponibiliza a mesma no pacote e exporta em `.csv` e `.xlsx`. Atualiza o README e atualiza a página inicial do site do pacote.
 
 
 ---
 ## Exemplo com GHA
 ### Checagem do pacote e execução de testes
 
-- Página no [Actions](https://github.com/beatrizmilz/mananciais/actions/workflows/1-R-CMD-check.yaml)
+- Confira o workflow no [Actions](https://github.com/beatrizmilz/mananciais/actions/workflows/1-R-CMD-check.yaml)
 
 
 - Como configurar? A função abaixo irá configurar utilizando o código disponível no  [r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#example-workflows).
@@ -308,7 +314,7 @@ usethis::use_github_action("check-release")
 ## Exemplo com GHA
 ### Avaliação da cobertura de testes
 
-- Página no [Actions](https://github.com/beatrizmilz/mananciais/actions/workflows/test-coverage.yaml)
+- Confira o workflow no [Actions](https://github.com/beatrizmilz/mananciais/actions/workflows/test-coverage.yaml)
 
 - Como configurar? A função abaixo irá configurar utilizando o código disponível no  [r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#example-workflows).
 
@@ -327,26 +333,69 @@ usethis::use_github_action("test-coverage")
 
 
 ---
-## Conclusão
+## Conclusões
+
+.pull-left[
+
+
+
+- Não é algo simples de aprender, mas facilita nosso trabalho :)
+
+- Veja a palestra do [Julio Trecenti](https://twitter.com/jtrecenti), ele mostrará outros exemplos com GHA!
+
+- Caso tenha dúvidas, envie neste fórum: https://discourse.curso-r.com/
+
+  - Antes de postar a dúvida, recomendo ler: [Dicas para escrever uma boa pergunta](https://discourse.curso-r.com/t/como-escrever-uma-boa-pergunta/542)
+
+
+
+
+]
+
+.pull-right[
+
+
+&lt;img src="https://media.giphy.com/media/LBNsT5SdM897a/giphy.gif" style="display: block; margin: auto;" /&gt;
+
+- É normal não acertar de primeira :) Provavelmente vai dar errado da primeira, segunda, terceira, ... , décima vez. Perseverança!
+
+
+]
 
 
 
 
 ---
+name: referencias
 
 ## Referências/recomendações de consulta
 
-- [Documentação do GitHub Actions](https://docs.github.com/pt/actions/learn-github-actions/introduction-to-github-actions)
+.pull-left[
+- GitHub Actions
+  - [Documentação do GitHub Actions](https://docs.github.com/pt/actions/learn-github-actions/introduction-to-github-actions)
+  - [Exemplos de workflows no repositório r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#example-workflows)
 
-- [Exemplos de workflows no repositório r-lib/actions](https://github.com/r-lib/actions/tree/master/examples#example-workflows)
+- Pacotes
+  - [Apresentação sobre pacotes em R da Curso-R](https://curso-r.github.io/main-pacotes/slides/index.html)
+  - [Capítulo 2 - Livro R Packages](https://r-pkgs.org/whole-game.html)
+  - [Livro Zen do R](https://curso-r.github.io/zen-do-r/)
+  
+]
 
-- [Apresentação sobre pacotes em R](https://curso-r.github.io/main-pacotes/slides/index.html)
 
-## Dúvidas
+.pull-right[
 
-- Caso tenha dúvidas, envie neste fórum: https://discourse.curso-r.com/
+- Testes unitários
+  - [Pacote {testthat}](https://testthat.r-lib.org/)
+  - [Pacote {covr}](https://covr.r-lib.org/)
+  
+- Git e GitHub
+  - [Materiais da R-Ladies SP sobre a Hacktoberfest 2020](https://r-ladies-sao-paulo.github.io/2020-hacktoberfest/)
+  - [Apresentação sobre pacotes em R da Curso-R - slides sobre Git e GitHub](https://curso-r.github.io/main-pacotes/slides/index.html)
 
-  - Antes de postar a dúvida, recomendo ler: [Dicas para escrever uma boa pergunta](https://discourse.curso-r.com/t/como-escrever-uma-boa-pergunta/542)
+]
+
+
 
 
 ---
