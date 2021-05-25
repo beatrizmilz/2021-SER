@@ -18,7 +18,7 @@ output:
       ratio: '16:9'
 # O código abaixo irá gerar a apresentação em HTML e PDF.
 # Caso não queira a versão em PDF, comente a linha a seguir:
-# knit: pagedown::chrome_print
+knit: pagedown::chrome_print
 ---
 
 ```{r setup, include=FALSE}
